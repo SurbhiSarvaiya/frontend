@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { API } from '../config';
 axios.post("https://backend-56qq.onrender.com/login", data)
 
+API.post("/login", data);
 const Login = () => {
     const [mobile, setMobile] = useState('');
     const [password, setPassword] = useState('');
