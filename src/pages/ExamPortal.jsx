@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import QuestionCard from '../components/QuestionCard';
 import Timer from '../components/Timer';
 import { toast } from 'react-toastify';
-
+import { API } from '../config';
 const ExamPortal = () => {
     const { id } = useParams();
     const navigate = useNavigate();
