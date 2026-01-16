@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { toast } from 'react-toastify';
 import { API } from '../config';
+API.post("/register", data);
 const Register = () => {
     const [name, setName] = useState('');
     const [mobile, setMobile] = useState('');
