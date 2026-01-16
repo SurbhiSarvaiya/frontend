@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-
+import { API } from '../config';
 const Dashboard = () => {
     const [exams, setExams] = useState([]);
     const [results, setResults] = useState([]);
