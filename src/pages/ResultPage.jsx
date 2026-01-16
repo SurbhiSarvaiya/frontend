@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-
+import { API } from '../config';
 const ResultPage = () => {
     const { id } = useParams();
     const [result, setResult] = useState(null);
