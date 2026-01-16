@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { toast } from 'react-toastify';
 import { API } from '../config';
 axios.post("https://backend-56qq.onrender.com/login", data)
-fetch(`${API}/api/users/login`, ...)
+
 API.post("/login", data);
 const Login = () => {
     const [mobile, setMobile] = useState('');
