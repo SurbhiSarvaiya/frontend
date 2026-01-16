@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { toast } from 'react-toastify';
-
+import { API } from '../config';
 const AdminDashboard = () => {
     const { logout } = useAuth();
     const [exams, setExams] = useState([]);
