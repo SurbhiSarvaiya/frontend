@@ -9,15 +9,14 @@ import API from "../api";
 //axios.post("https://backend-56qq.onrender.com/login",data)
 //API.post("/login", data);
 
-API.post("/api/auth/login", data); // example
-
-API.post("/login", data)
+API.post("/api/auth/login", data)
   .then(res => {
     console.log(res.data);
   })
   .catch(err => {
-    console.error(err.response?.data || err.message);
+    console.error("Login failed:", err.response?.data || err.message);
   });
+
 
 const Login = () => {
     const [mobile, setMobile] = useState('');
