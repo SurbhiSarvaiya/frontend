@@ -8,6 +8,9 @@ import API from "../api";
 
 axios.post("https://backend-56qq.onrender.com/login",data)
 API.post("/login", data);
+console.log("API =", API);
+
+
 const Login = () => {
     const [mobile, setMobile] = useState('');
     const [password, setPassword] = useState('');
