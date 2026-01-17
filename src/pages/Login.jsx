@@ -1,89 +1,89 @@
-import axios from "axios";
-import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
-import { toast } from 'react-toastify';
-//import  {API}  from '../config';
-import API from "../api";   
-
-//axios.post("https://backend-56qq.onrender.com/login",data)
-//API.post("/login", data);
-
-API.post("/api/auth/login", data)
-  .then(res => {
-    console.log(res.data);
-  })
-  .catch(err => {
-    console.error("Login failed:", err.response?.data || err.message);
-  });
-
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import { toast } from "react-toastify";
+import API from "../api";
 
 const Login = () => {
-    const [mobile, setMobile] = useState('');
-    const [password, setPassword] = useState('');
-    const { login } = useAuth();
-    const navigate = useNavigate();
+  const [mobile, setMobile] = useState("");
+  const [password, setPassword] = useState("");
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await fetch('/api/users/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ mobile, password })
-            });
-            const data = await response.json();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-            if (response.ok) {
-                login(data);
-                toast.success('Login Successful');
-                navigate(data.role === 'admin' ? '/admin' : '/');
-            } else {
-                toast.error(data.message);
-            }
-        } catch (error) {
-            toast.error('Login failed');
-        }
-    };
+    // ✅ DEFINE data properly
+    const data = { mobile, password };
 
-    return (
-        <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-indigo-500 to-purple-600">
-            <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-2xl">
-                <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Welcome Back</h2>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700">Mobile Number</label>
-                        <input
-                            type="text"
-                            required
-                            className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
-                            value={mobile}
-                            onChange={(e) => setMobile(e.target.value)}
-                        />
-                    </div>
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700">Password</label>
-                        <input
-                            type="password"
-                            required
-                            className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                    </div>
-                    <button
-                        type="submit"
-                        className="w-full py-2 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-md shadow focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-200"
-                    >
-                        Login
-                    </button>
-                </form>
-                <div className="mt-4 text-center">
-                    <p className="text-sm text-gray-600">New Student? <Link to="/register" className="text-indigo-600 hover:underline">Register Here</Link></p>
-                </div>
-            </div>
+    try {
+      const response = await API.post("/api/auth/login", data);
+
+      login(response.data);
+      toast.success("Login Successful");
+
+      navigate(response.data.role === "admin" ? "/admin" : "/");
+    } catch (error) {
+      console.error(error);
+      toast.error(
+        error.response?.data?.message || "Login failed"
+      );
+    }
+  };
+
+  return (
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-indigo-500 to-purple-600">
+      <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-2xl">
+        <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">
+          Welcome Back
+        </h2>
+
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Mobile Number
+            </label>
+            <input
+              type="text"
+              required
+              value={mobile}
+              onChange={(e) => setMobile(e.target.value)}
+              className="w-full px-4 py-2 mt-1 border rounded-md"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Password
+            </label>
+            <input
+              type="password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full px-4 py-2 mt-1 border rounded-md"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="w-full py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md"
+          >
+            Login
+          </button>
+        </form>
+
+        <div className="mt-4 text-center">
+          <p className="text-sm text-gray-600">
+            New Student?{" "}
+            <Link to="/register" className="text-indigo-600 hover:underline">
+              Register Here
+            </Link>
+          </p>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default Login;
