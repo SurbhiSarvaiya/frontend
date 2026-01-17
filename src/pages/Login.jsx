@@ -4,9 +4,10 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { toast } from 'react-toastify';
 import { API } from '../config';
-axios.post("https://backend-56qq.onrender.com/login")
+import API from "../api";   
 
-API.post("/login");
+axios.post("https://backend-56qq.onrender.com/login")
+API.post("/login", data);
 const Login = () => {
     const [mobile, setMobile] = useState('');
     const [password, setPassword] = useState('');
