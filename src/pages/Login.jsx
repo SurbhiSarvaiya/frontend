@@ -8,7 +8,8 @@ import API from "../api";
 
 //axios.post("https://backend-56qq.onrender.com/login",data)
 //API.post("/login", data);
-console.log("API =", API);
+
+API.post("/api/auth/login", data); // example
 
 API.post("/login", data)
   .then(res => {
