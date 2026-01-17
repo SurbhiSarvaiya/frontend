@@ -9,6 +9,7 @@ import AdminDashboard from './pages/AdminDashboard';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 const ProtectedRoute = ({ children, role }) => {
     const { user, loading } = useAuth();
     if (loading) return <div>Loading...</div>;
