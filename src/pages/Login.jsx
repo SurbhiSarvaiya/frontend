@@ -10,6 +10,25 @@ const Login = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
 
+const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+        const res = await API.post("/api/auth/login", {
+            mobile,
+            password
+        });
+
+        login(res.data);
+        toast.success("Login successful");
+
+        navigate(res.data.role === "admin" ? "/admin" : "/");
+    } catch (err) {
+        toast.error(
+            err.response?.data?.message || "Login failed"
+        );
+    }
+};
   const handleSubmit = async (e) => {
     e.preventDefault();
 
