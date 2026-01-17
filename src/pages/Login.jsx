@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { toast } from 'react-toastify';
-import  API  from '../config';
+import  {API}  from '../config';
 import API from "../api";   
 
 axios.post("https://backend-56qq.onrender.com/login",data)
