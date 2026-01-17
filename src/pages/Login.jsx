@@ -10,6 +10,13 @@ import API from "../api";
 //API.post("/login", data);
 console.log("API =", API);
 
+API.post("/login", data)
+  .then(res => {
+    console.log(res.data);
+  })
+  .catch(err => {
+    console.error(err.response?.data || err.message);
+  });
 
 const Login = () => {
     const [mobile, setMobile] = useState('');
