@@ -58,7 +58,7 @@ const Login = () => {
             required
           />
 
-          <button className="w-full bg-indigo-600 text-white py-2 rounded">
+          <button className="w-full bg-indigo-600 text-white py-2 rounded" type="submit">
             Login
           </button>
         </form>
