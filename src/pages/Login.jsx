@@ -14,7 +14,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-        const res = await API.post("/api/auth/login", {
+        const res = await API.post("/api/users/login", {
             mobile,
             password
         });
