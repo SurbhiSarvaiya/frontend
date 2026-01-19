@@ -14,19 +14,26 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const res = await API.post("/api/auth/login", {
-        mobile,
-        password,
-      });
+        const res = await API.post("/api/auth/login", {
+            mobile,
+            password
+        });
 
-      login(res.data);
-      toast.success("Login successful");
+        console.log("LOGIN RESPONSE:", res.data); // DEBUG
 
-      navigate(res.data.role === "admin" ? "/admin" : "/");
+        login(res.data); // save user + token
+        toast.success("Login successful");
+
+        navigate(res.data.role === "admin" ? "/admin" : "/");
     } catch (err) {
-      toast.error(err.response?.data?.message || "Login failed");
+        console.error("LOGIN ERROR:", err.response?.data || err.message);
+
+        toast.error(
+            err.response?.data?.message || "Login failed"
+        );
     }
-  };
+};
+
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-indigo-500 to-purple-600">
