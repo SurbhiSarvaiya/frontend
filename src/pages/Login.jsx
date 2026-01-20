@@ -15,7 +15,7 @@ const Login = () => {
 
     try {
         const res = await API.post("/api/auth/login", {
-            mobile,
+            email:mobile,
             password
         });
 
