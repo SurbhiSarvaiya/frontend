@@ -27,14 +27,23 @@ const AdminDashboard = () => {
         fetchExams();
     }, []);
 
-    const fetchExams = async () => {
+ /*   const fetchExams = async () => {
         const res = await fetch('/api/exams', {
             headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
         });
         if (res.ok) setExams(await res.json());
-    };
+    };*/
+    const fetchExams = async () => {
+  try {
+    const res = await API.get("/api/exams");
+    setExams(res.data);
+  } catch (err) {
+    toast.error("Failed to fetch exams");
+    console.error(err);
+  }
+};
 
-    const handleCreateExam = async (e) => {
+/*  const handleCreateExam = async (e) => {
         e.preventDefault();
         try {
             const res = await fetch('/api/exams', {
@@ -55,8 +64,23 @@ const AdminDashboard = () => {
             }
         } catch (err) { console.error(err); }
     };
+*/
+    const handleCreateExam = async (e) => {
+  e.preventDefault();
+  try {
+    await API.post("/api/exams", {
+      title, duration, totalMarks, passingMarks
+    });
 
-    const handleAddQuestion = async (e) => {
+    toast.success("Exam Created");
+    fetchExams();
+    setView("list");
+  } catch (err) {
+    toast.error("Failed to create exam");
+  }
+};
+
+/*    const handleAddQuestion = async (e) => {
         e.preventDefault();
         try {
             const res = await fetch(`/api/exams/${selectedExamId}/questions`, {
@@ -81,6 +105,22 @@ const AdminDashboard = () => {
             }
         } catch (err) { console.error(err); }
     };
+*/
+    const handleAddQuestion = async (e) => {
+  e.preventDefault();
+  try {
+    await API.post(`/api/exams/${selectedExamId}/questions`, {
+      text: qText,
+      options: [option1, option2, option3, option4],
+      correctAnswer,
+      marks
+    });
+
+    toast.success("Question Added");
+  } catch (err) {
+    toast.error("Failed to add question");
+  }
+};
 
     return (
         <div className="min-h-screen bg-gray-100">
