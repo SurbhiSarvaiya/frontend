@@ -1,13 +1,10 @@
 import axios from "axios";
 
-const API = axios.create({
+export const API = axios.create({
   baseURL: "https://backend-56qq.onrender.com",
-  headers: {
-    "Content-Type": "application/json"
-  }
 });
 
-// 🔐 Automatically attach JWT
+// 🔐 Attach token automatically
 API.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) {
@@ -15,5 +12,3 @@ API.interceptors.request.use((config) => {
   }
   return config;
 });
-
-export default API;
