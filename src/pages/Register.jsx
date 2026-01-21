@@ -33,7 +33,7 @@ const Register = () => {
             if (response.ok) {
                 login(data);
                 toast.success('Registration Successful');
-                navigate('/');
+                navigate('/login');
             } else {
                 toast.error(data.message);
             }
