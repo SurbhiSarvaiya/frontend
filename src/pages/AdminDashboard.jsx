@@ -27,21 +27,13 @@ const AdminDashboard = () => {
         fetchExams();
     }, []);
 
- /*   const fetchExams = async () => {
+ const fetchExams = async () => {
         const res = await fetch('/api/exams', {
             headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
         });
         if (res.ok) setExams(await res.json());
-    };*/
-    const fetchExams = async () => {
-  try {
-    const res = await API.get("/api/exams");
-    setExams(res.data);
-  } catch (err) {
-    toast.error("Failed to fetch exams");
-    console.error(err);
-  }
-};
+    };
+
 
 /*  const handleCreateExam = async (e) => {
         e.preventDefault();
