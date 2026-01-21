@@ -31,7 +31,7 @@ const Register = () => {
             }
 
             if (response.ok) {
-                login(data);
+                login(response.data);
                 toast.success('Registration Successful');
                 navigate('/login');
             } else {
