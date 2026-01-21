@@ -21,6 +21,7 @@ const Register = () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ name, mobile, password })
             });
+            console.log("RESPONSE DATA:", response.data); 
             let data;
             const contentType = response.headers.get("content-type");
             if (contentType && contentType.includes("application/json")) {
