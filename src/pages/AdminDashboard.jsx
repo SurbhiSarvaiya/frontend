@@ -26,13 +26,24 @@ const AdminDashboard = () => {
     useEffect(() => {
         fetchExams();
     }, []);
-
+/*
  const fetchExams = async () => {
         const res = await fetch('/api/exams', {
             headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
         });
         if (res.ok) setExams(await res.json());
     };
+*/
+    const fetchExams = async () => {
+  try {
+    const res = await API.get("/api/exams");
+    console.log("FETCHED EXAMS:", res.data); // 🔥 IMPORTANT
+    setExams(res.data);
+  } catch (err) {
+    console.error("FETCH EXAMS ERROR:", err.response?.data || err.message);
+    toast.error(err.response?.data?.message || "Failed to fetch exams");
+  }
+};
 
 
 /*  const handleCreateExam = async (e) => {
