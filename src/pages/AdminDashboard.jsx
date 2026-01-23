@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { toast } from 'react-toastify';
 import { API } from '../config';
+import API from "../api";
+
 const AdminDashboard = () => {
     const { logout } = useAuth();
     const [exams, setExams] = useState([]);
@@ -34,15 +36,9 @@ const AdminDashboard = () => {
         if (res.ok) setExams(await res.json());
     };
 */
-    const fetchExams = async () => {
-  try {
-    const res = await API.get("/api/exams");
-    console.log("FETCHED EXAMS:", res.data); // 🔥 IMPORTANT
-    setExams(res.data);
-  } catch (err) {
-    console.error("FETCH EXAMS ERROR:", err.response?.data || err.message);
-    toast.error(err.response?.data?.message || "Failed to fetch exams");
-  }
+  const fetchExams = async () => {
+  const res = await API.get("/api/exams");
+  setExams(res.data);
 };
 
 
