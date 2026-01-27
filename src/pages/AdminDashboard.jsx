@@ -54,11 +54,11 @@ const AdminDashboard = () => {
     const data = await res.json();
     console.log("FETCHED EXAMS:", data); // 🔍 DEBUG
 
-    setExams(data);
+    setExams(res.data);
   } catch (err) {
     console.error(err);
   }
-        if (res.ok) {
+if (res.ok) {
   toast.success("Exam Created");
 
   await fetchExams();     // 🔥 THIS LINE FIXES YOUR BUG
