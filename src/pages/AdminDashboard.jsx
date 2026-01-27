@@ -36,11 +36,30 @@ const AdminDashboard = () => {
         });
         if (res.ok) setExams(await res.json());
     };
-*/
+*//*
   const fetchExams = async () => {
   const res = await API.get("/api/exams");
   setExams(res.data);
+};*/
+    const fetchExams = async () => {
+  try {
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    const res = await fetch("/api/exams", {
+      headers: {
+        Authorization: `Bearer ${user.token}`
+      }
+    });
+
+    const data = await res.json();
+    console.log("FETCHED EXAMS:", data); // 🔍 DEBUG
+
+    setExams(data);
+  } catch (err) {
+    console.error(err);
+  }
 };
+
 
 
 const user = JSON.parse(localStorage.getItem("user"));
