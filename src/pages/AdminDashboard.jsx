@@ -58,6 +58,18 @@ const AdminDashboard = () => {
   } catch (err) {
     console.error(err);
   }
+        if (res.ok) {
+  toast.success("Exam Created");
+
+  await fetchExams();     // 🔥 THIS LINE FIXES YOUR BUG
+
+  setView("list");
+  setTitle("");
+  setDuration("");
+  setTotalMarks("");
+  setPassingMarks("");
+}
+
 };
 
 
