@@ -43,27 +43,44 @@ const AdminDashboard = () => {
 };
 
 
- const handleCreateExam = async (e) => {
-        e.preventDefault();
-        try {
-            const res = await fetch('/api/exams', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`
-                },
-                body: JSON.stringify({ title, duration, totalMarks, passingMarks })
-            });
-            if (res.ok) {
-                toast.success('Exam Created');
-                fetchExams();
-                setView('list');
-                setTitle(''); setDuration(''); setTotalMarks(''); setPassingMarks('');
-            } else {
-                toast.error('Failed to create exam');
-            }
-        } catch (err) { console.error(err); }
-    };
+const user = JSON.parse(localStorage.getItem("user"));
+
+const handleCreateExam = async (e) => {
+  e.preventDefault();
+
+  try {
+    const res = await fetch("/api/exams", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user.token}`
+      },
+      body: JSON.stringify({
+        title,
+        duration,
+        totalMarks,
+        passingMarks
+      })
+    });
+
+    if (res.ok) {
+      toast.success("Exam Created");
+      fetchExams();
+      setView("list");
+      setTitle("");
+      setDuration("");
+      setTotalMarks("");
+      setPassingMarks("");
+    } else {
+      const err = await res.json();
+      toast.error(err.message || "Failed to create exam");
+    }
+  } catch (err) {
+    console.error(err);
+    toast.error("Server error");
+  }
+};
+
 /*
     const handleCreateExam = async (e) => {
   e.preventDefault();
