@@ -43,7 +43,7 @@ const AdminDashboard = () => {
 };
 
 
-/*  const handleCreateExam = async (e) => {
+ const handleCreateExam = async (e) => {
         e.preventDefault();
         try {
             const res = await fetch('/api/exams', {
@@ -64,7 +64,7 @@ const AdminDashboard = () => {
             }
         } catch (err) { console.error(err); }
     };
-*/
+/*
     const handleCreateExam = async (e) => {
   e.preventDefault();
   try {
