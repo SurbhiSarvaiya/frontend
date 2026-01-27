@@ -44,6 +44,7 @@ const AdminDashboard = () => {
 
 
 const user = JSON.parse(localStorage.getItem("user"));
+console.log("USER FROM STORAGE:", JSON.parse(localStorage.getItem("user")));
 
 const handleCreateExam = async (e) => {
   e.preventDefault();
