@@ -66,6 +66,7 @@ const fetchExams = async () => {
   },
   body: JSON.stringify({ title, duration, totalMarks, passingMarks })
 });
+};
 const user = JSON.parse(localStorage.getItem("user"));
 console.log("USER FROM STORAGE:", JSON.parse(localStorage.getItem("user")));
 
