@@ -82,21 +82,7 @@ const handleCreateExam = async (e) => {
   }
 };
 
-/*
-    const handleCreateExam = async (e) => {
-  e.preventDefault();
-  try {
-    await API.post("/api/exams", {
-      title, duration, totalMarks, passingMarks
-    });
 
-    toast.success("Exam Created");
-    fetchExams();
-    setView("list");
-  } catch (err) {
-    toast.error("Failed to create exam");
-  }
-};
 
 /*    const handleAddQuestion = async (e) => {
         e.preventDefault();
