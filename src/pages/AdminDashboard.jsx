@@ -41,20 +41,7 @@ const AdminDashboard = () => {
   const res = await API.get("/api/exams");
   setExams(res.data);
 };
-const fetchExams = async () => {
-  const user = JSON.parse(localStorage.getItem("user"));
 
-  const res = await fetch(`${API_URL}/api/exams`, {
-    headers: {
-      Authorization: `Bearer ${user.token}`
-    }
-  });
-
-  if (res.ok) {
-    const data = await res.json();
-    setExams(data);
-  }
-};
 
 const user = JSON.parse(localStorage.getItem("user"));
 console.log("USER FROM STORAGE:", JSON.parse(localStorage.getItem("user")));
