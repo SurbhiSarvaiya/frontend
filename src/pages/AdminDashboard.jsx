@@ -38,8 +38,8 @@ const AdminDashboard = () => {
     };
 */
   const fetchExams = async () => {
-  const res = await API.get("/api/exams");
-//  setExams(res.data);
+  const res = await API.get("${API_URL}/api/exams");
+  setExams(res.data);
     if (res.ok) {
   const newExam = await res.json();
   setExams(prev => [...prev, newExam]); // 🔥 instant UI update
@@ -57,7 +57,7 @@ const handleCreateExam = async (e) => {
   e.preventDefault();
 
   try {
-    const res = await fetch("/api/exams", {
+    const res = await fetch("${API_URL}/api/exams", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
