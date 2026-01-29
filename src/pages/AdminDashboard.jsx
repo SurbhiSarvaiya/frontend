@@ -41,7 +41,7 @@ const AdminDashboard = () => {
   const res = await API.get("/api/exams");
   setExams(res.data);
 };
-
+*/
 const fetchExams = async () => {
   const user = JSON.parse(localStorage.getItem("user"));
 
@@ -56,17 +56,7 @@ const fetchExams = async () => {
     setExams(data);
   }
 };
-*/
-const fetchExams = async () => {
-    const res = await fetch(`${API_URL}/api/exams`, {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${user.token}`
-  },
-  body: JSON.stringify({ title, duration, totalMarks, passingMarks })
-});
-};
+
 const user = JSON.parse(localStorage.getItem("user"));
 console.log("USER FROM STORAGE:", JSON.parse(localStorage.getItem("user")));
 
