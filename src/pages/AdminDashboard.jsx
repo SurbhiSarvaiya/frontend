@@ -39,7 +39,14 @@ const AdminDashboard = () => {
 */
   const fetchExams = async () => {
   const res = await API.get("/api/exams");
-  setExams(res.data);
+//  setExams(res.data);
+    if (res.ok) {
+  const newExam = await res.json();
+  setExams(prev => [...prev, newExam]); // 🔥 instant UI update
+  toast.success("Exam Created");
+  setView("list");
+}
+
 };
 
 
@@ -56,6 +63,7 @@ const handleCreateExam = async (e) => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${user.token}`
       },
+        
       body: JSON.stringify({
         title,
         duration,
